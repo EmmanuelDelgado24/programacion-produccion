@@ -1,0 +1,16 @@
+# Visual Studio / VS Code
+.vs/
+.vscode/
+bin/
+obj/
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+.angular/
+
+# Temporales y logs
+*.log
+*.tmp
+*.vsidx

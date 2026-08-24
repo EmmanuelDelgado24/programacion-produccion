@@ -1,0 +1,8 @@
+.contenedor-principal {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos uno debajo del otro */
+  align-items: center;    /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente (opcional) */
+  width: 100%;
+  gap: 20px;              /* Espacio entre el texto y la tabla */
+}

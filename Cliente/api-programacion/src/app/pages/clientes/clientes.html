@@ -1,0 +1,54 @@
+<div class="contenedor-principal">
+
+  <!-- Botón original -->
+  <button (click)="openModal()"
+    class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+    Agregar
+  </button>
+
+  <app-modal [title]="'Crear nuevo cliente'" [show]="isModalOpen" (close)="closeModal()">
+
+    <!-- FORMULARIO REAL -->
+    <form action="#">
+      <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
+
+        <div class="col-span-2 sm:col-span-1">
+          <label class="block mb-2.5 text-sm font-medium text-heading">ID</label>
+          <input type="number"
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs"
+            placeholder="id"
+            [value]="id()"
+            (input)="id.set(txtId.valueAsNumber)"
+            #txtId
+          >
+        </div>
+        <div class="col-span-2">
+          <label class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
+          <input type="text"
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs"
+            placeholder="nombre del cliente"
+            [value]="nombre()"
+            (input)="nombre.set(txtName.value)"
+            #txtName
+          >
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
+
+        <button (click)="addCliente()"
+          class="inline-flex items-center text-white bg-brand hover:bg-brand-strong border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-base text-sm px-4 py-2.5">
+          Agregar nuevo cliente
+        </button>
+
+        <button type="button"
+          class="text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading rounded-base text-sm px-4 py-2.5"
+          (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </app-modal>
+
+</div>
+
+
+<app-tabla-clientes [listadoClientes]="cliente"></app-tabla-clientes>

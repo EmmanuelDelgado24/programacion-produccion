@@ -1,0 +1,110 @@
+<section>
+  <td class="px-6 py-4">
+    <select [value]="" (change)="$any($event.target).value"
+      class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs">
+      <option value="">DÍA</option>
+      <option value="LUNES">LUNES</option>
+      <option value="MARTES">MARTES</option>
+      <option value="MIÉRCOLES">MIÉRCOLES</option>
+      <option value="JUEVES">JUEVES</option>
+      <option value="VIERNES">VIERNES</option>
+    </select>
+  </td>
+  <section>
+
+    <section>
+      <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default m-4">
+        <table class="w-full text-sm text-left rtl:text-right text-body bg-yellow-700">
+          <thead class="text-sm text-body bg-yellow-700 border-b rounded-base border-default" style="color: #000000;">
+            <tr>
+              <th scope="col" class="px-6 py-3 font-medium">IdPedido</th>
+              <th scope="col" class="px-6 py-3 font-medium">Cliente</th>
+              <th scope="col" class="px-6 py-3 font-medium">Semana</th>
+              <th scope="col" class="px-6 py-3 font-medium">Departamento</th>
+              <th scope="col" class="px-6 py-3 font-medium">Linea</th>
+              <th scope="col" class="px-6 py-3 font-medium">Día</th>
+              <th scope="col" class="px-6 py-3 font-medium">Modelo</th>
+              <th scope="col" class="px-6 py-3 font-medium">250<br>220</th>
+              <th scope="col" class="px-6 py-3 font-medium">255<br>225</th>
+              <th scope="col" class="px-6 py-3 font-medium">260<br>230</th>
+              <th scope="col" class="px-6 py-3 font-medium">265<br>235</th>
+              <th scope="col" class="px-6 py-3 font-medium">270<br>240</th>
+              <th scope="col" class="px-6 py-3 font-medium">275<br>245</th>
+              <th scope="col" class="px-6 py-3 font-medium">280<br>250</th>
+              <th scope="col" class="px-6 py-3 font-medium">285<br>255</th>
+              <th scope="col" class="px-6 py-3 font-medium">290<br>260</th>
+              <th scope="col" class="px-6 py-3 font-medium">295<br>265</th>
+              <th scope="col" class="px-6 py-3 font-medium">300<br>270</th>
+              <th scope="col" class="px-6 py-3 font-medium">305</th>
+              <th scope="col" class="px-6 py-3 font-medium">310</th>
+              <th scope="col" class="px-6 py-3 font-medium">Demanda Día</th>
+              <th scope="col" class="px-6 py-3 font-medium">Personal</th>
+              <th scope="col" class="px-6 py-3 font-medium">Minutos Disponibles por Departamento</th>
+              <th scope="col" class="px-6 py-3 font-medium">Tiempo Estándar</th>
+              <th scope="col" class="px-6 py-3 font-medium">Capacidad Día (pares)</th>
+              <th scope="col" class="px-6 py-3 font-medium">Carga Día (min requeridos)</th>
+              <th scope="col" class="px-6 py-3 font-medium">Saturación (%)</th>
+              <th scope="col" class="px-6 py-3 font-medium">Capacidad Real del Departamento</th>
+              <th scope="col" class="px-6 py-3 font-medium">Programación Ideal</th>
+              <th scope="col" class="px-6 py-3 font-medium">Deficit (pares para cumplir)</th>
+          </thead>
+          <tbody>
+            @for (prog of listaProgramacion; track prog.idPedido) {
+            <tr class="bg-neutral-primary border-b border-default">
+              <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                {{ prog.idPedido }}
+              </th>
+              <td class="px-6 py-4">{{ prog.cliente }}</td>
+              <td class="px-6 py-4">{{ prog.semana }}</td>
+              <td class="px-6 py-4">{{ prog.departamento}}</td>
+              <td class="px-6 py-4">{{ prog.linea }}</td>
+              <td class="px-6 py-4">{{ prog.dia }}</td>
+              <td class="px-6 py-4">{{ prog.modelo }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 50) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 55) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 60) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 65) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 70) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 75) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 80) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 85) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 90) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 95) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 100) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 105) }}</td>
+              <td class="px-6 py-2 text-center bg-gray-0">{{ getTallaCant(prog, 110) }}</td>
+              <td class="px-6 py-4">{{ prog.demandaDia }}</td>
+              <td class="px-6 py-4">{{ prog.personal }}</td>
+              <td class="px-6 py-4">{{ prog.minutosDispo }}</td>
+              <td class="px-6 py-4">{{ prog.tiempoEst }}</td>
+              <td class="px-6 py-4">{{ prog.capacidadDia }}</td>
+              <td class="px-6 py-4">{{ prog.cargaDia}}</td>
+              <td class="px-6 py-4">
+                <span [ngClass]="{
+                      'bg-success': prog.saturacion >= 90,
+                      'bg-warning': prog.saturacion >= 80 && prog.saturacion < 90,
+                      'bg-danger': prog.saturacion < 80
+                    }" class="px-2 py-1 rounded text-white">
+                  {{ prog.saturacion }} %
+                </span>
+              </td>
+              <td class="px-6 py-4">{{ prog.capacidadReal }}</td>
+              <td class="px-6 py-4">{{ prog.programacionIdeal}}</td>
+              <td class="px-6 py-4">{{ prog.deficit}}</td>
+              <div class="flex items-center px-6 py-5 space-x-3">
+                <button type="button"
+                  class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+                  (click)="eliminarFila()">Eliminar</button>
+              </div>
+            </tr>
+            } @empty {
+            <tr>
+              <td colspan="7" class="px-6 py-4 text-center">
+                No se encontraron registros de Modelos corte.
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>

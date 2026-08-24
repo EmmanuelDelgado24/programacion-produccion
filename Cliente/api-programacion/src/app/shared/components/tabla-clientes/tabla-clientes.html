@@ -1,0 +1,91 @@
+<form class="max-w-md mx-auto m-4">
+  <section>
+    <label for="search" class="block mb-2.5 text-sm font-medium text-heading sr-only">Search</label>
+  </section>
+  <div class="relative m-4">
+    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+      <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+          d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+      </svg>
+    </div>
+    <input type="search" id="search"
+      class="block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+      placeholder="Search" required />
+    <button type="button"
+      class="absolute end-1.5 bottom-1.5 text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
+  </div>
+</form>
+
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default m-4">
+  <table class="w-full text-sm text-left rtl:text-right text-body bg-yellow-700">
+    <thead class="text-sm text-body bg-yellow-700 border-b rounded-base border-default" style="color: #000000;">
+      <tr>
+        <th scope="col" class="px-6 py-3 font-medium">ID</th>
+        <th scope="col" class="px-6 py-3 font-medium">Nombre</th>
+    </thead>
+    <tbody>
+      @for (clie of listadoClientes; track clie.id) {
+      <tr class="bg-neutral-primary border-b border-default">
+        <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+          {{ clie.id }}
+        </th>
+        <td class="px-6 py-4">{{ clie.nombre }}</td>
+        <td class="flex items-center px-6 py-4 gap-2">
+          <button type="button"
+            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+            (click)="openModal(clie)">Editar</button>
+          <button type="button"
+            class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+            (click)="deleteCliente(clie.id)">Eliminar</button>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="7" class="px-6 py-4 text-center">
+          No se encontraron registros de clientes.
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<app-modal [title]="'Editar cliente'" [show]="isModalOpen" (close)="closeModal()">
+
+  <!-- FORMULARIO REAL -->
+  <form action="#">
+    <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
+
+      <div class="col-span-2 sm:col-span-1">
+        <label class="block mb-2.5 text-sm font-medium text-heading">ID</label>
+        <input type="number"
+          class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs"
+          placeholder="id" #txtId
+          value="{{ clienteSeleccionado?.id }}"
+      >
+      </div>
+      <div class="col-span-2">
+        <label class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
+        <input type="text"
+          class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs"
+          placeholder="nombre del cliente" #txtName
+          value="{{ clienteSeleccionado?.nombre }}"
+      >
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
+
+      <button (click)="editCliente({ id: txtId.valueAsNumber, nombre: txtName.value })"
+        class="inline-flex items-center text-white bg-brand hover:bg-brand-strong border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-base text-sm px-4 py-2.5">
+        Editar cliente
+      </button>
+
+      <button type="button"
+        class="text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading rounded-base text-sm px-4 py-2.5"
+        (click)="closeModal()">Cancel</button>
+    </div>
+  </form>
+</app-modal>

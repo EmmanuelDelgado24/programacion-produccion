@@ -1,0 +1,108 @@
+<form class="max-w-md mx-auto m-4">
+  <section>
+    <label for="search" class="block mb-2.5 text-sm font-medium text-heading sr-only">Search</label>
+  </section>
+    <div class="relative m-4">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+        </div>
+        <input type="search" id="search" class="block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" placeholder="Search" required />
+        <button type="button" class="absolute end-1.5 bottom-1.5 text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
+    </div>
+</form>
+
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default m-4">
+  <table class="w-full text-sm text-left rtl:text-right text-body bg-yellow-700">
+    <thead class="text-sm text-body bg-yellow-700 border-b rounded-base border-default" style="color: #000000;">
+      <tr>
+        <th scope="col" class="px-6 py-3 font-medium">Cliente</th>
+        <th scope="col" class="px-6 py-3 font-medium">Pedido Cliente</th>
+        <th scope="col" class="px-6 py-3 font-medium">Pedido Interno</th>
+        <th scope="col" class="px-6 py-3 font-medium">Semana y Folio de Explosión</th>
+        <th scope="col" class="px-6 py-3 font-medium">Fecha de Realización de Explosión</th>
+        <th scope="col" class="px-6 py-3 font-medium">Fecha de Liberación de Explosión</th>
+        <th scope="col" class="px-6 py-3 font-medium">Semana Programada</th>
+        <th scope="col" class="px-6 py-3 font-medium">Construcción</th>
+        <th scope="col" class="px-6 py-3 font-medium">Colección</th>
+        <th scope="col" class="px-6 py-3 font-medium">Modelo</th>
+        <th scope="col" class="px-6 py-3 font-medium">Piel</th>
+        <th scope="col" class="px-6 py-3 font-medium">Color Big Zap</th>
+        <th scope="col" class="px-6 py-3 font-medium">22</th>
+        <th scope="col" class="px-6 py-3 font-medium">22.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">23</th>
+        <th scope="col" class="px-6 py-3 font-medium">23.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">24</th>
+        <th scope="col" class="px-6 py-3 font-medium">24.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">25</th>
+        <th scope="col" class="px-6 py-3 font-medium">25.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">26</th>
+        <th scope="col" class="px-6 py-3 font-medium">26.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">27</th>
+        <th scope="col" class="px-6 py-3 font-medium">27.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">28</th>
+        <th scope="col" class="px-6 py-3 font-medium">28.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">29</th>
+        <th scope="col" class="px-6 py-3 font-medium">29.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">30</th>
+        <th scope="col" class="px-6 py-3 font-medium">30.5</th>
+        <th scope="col" class="px-6 py-3 font-medium">31</th>
+        <th scope="col" class="px-6 py-3 font-medium">Pares Programados</th>
+        <th scope="col" class="px-6 py-3 font-medium">Estatus del Modelo</th>
+        <th scope="col" class="px-6 py-3 font-medium">Fecha de Entrega</th>
+        <th scope="col" class="px-6 py-3 font-medium">Fecha de Cancelación</th>
+    </thead>
+    <tbody>
+      @for (pedi of listadoPedidos; track pedi.cliente.nombre) {
+        <tr class="bg-neutral-primary border-b border-default">
+          <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+            {{ pedi.cliente.nombre }}
+          </th>
+          <td class="px-6 py-4">{{ pedi.pedidoCliente }}</td>
+          <td class="px-6 py-4">{{ pedi.pedidoInterno }}</td>
+          <td class="px-6 py-4">{{ pedi.semanaYFolioDeExplosion }}</td>
+          <td class="px-6 py-4">{{ pedi.fechaRealizacionExplosion }}</td>
+          <td class="px-6 py-4">{{ pedi.fechaLiberacionExplosion }}</td>
+          <td class="px-6 py-4">{{ pedi.semanaProgramada }}</td>
+          <td class="px-6 py-4">{{ pedi.construccion }}</td>
+          <td class="px-6 py-4">{{ pedi.coleccion }}</td>
+          <td class="px-6 py-4">{{ pedi.modelo}}</td>
+          <td class="px-6 py-4">{{ pedi.piel }}</td>
+          <td class="px-6 py-4">{{ pedi.colorBigZap }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 22) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 22.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 23) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 23.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 24) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 24.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 25) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 25.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 26) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 26.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 27) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 27.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 28) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 28.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 29) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 29.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 30) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 30.5) }}</td>
+          <td class="px-4 py-2 text-center bg-gray-50">{{ getTallaCant(pedi, 31) }}</td>
+          <td class="px-6 py-4">{{ sumarPares(pedi) }}</td>
+          <td class="px-6 py-4">{{ pedi.statusModelo }}</td>
+          <td class="px-6 py-4">{{ pedi.fechaDePedido }}</td>
+          <td class="px-6 py-4">{{ pedi.fechaDeEntrega }}</td>
+          <td class="flex items-center px-6 py-4 gap-2">
+            <button type="button" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Editar</button>
+            <button type="button" class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Eliminar</button>
+          </td>
+        </tr>
+      } @empty {
+                <tr>
+                    <td colspan="7" class="px-6 py-4 text-center">
+                        No se encontraron registros de pedidos.
+                    </td>
+                </tr>
+              }
+    </tbody>
+  </table>
+</div>
