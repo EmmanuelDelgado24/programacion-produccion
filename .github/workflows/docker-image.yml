@@ -18,16 +18,15 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Docker login
+    - name: Test auth directly
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        echo "Iniciando login"
-        CLEAN_USER=$(echo -n "$DOCKER_USER" | tr -d '[:space:]')
-        CLEAN_PASS=$(echo -n "$DOCKER_PASSWORD" | tr -d '[:space:]')
-        echo -n "$CLEAN_PASS" | docker login -u "$CLEAN_USER" --password-stdin
-        echo "Fin del login"
+        curl -s -o /dev/null -w "%{http_code}" \
+          -X POST "https://hub.docker.com/v2/users/login/" \
+          -H "Content-Type: application/json" \
+          -d "{\"username\": \"$DOCKER_USER\", \"password\": \"$DOCKER_PASSWORD\"}"
         
 
     
