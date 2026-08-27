@@ -18,15 +18,16 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Debug secrets (safe)
+    - name: Docker login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        echo "User is empty? ${DOCKER_USER:+NO}${DOCKER_USER:-YES}"
-        echo "Password is empty? ${DOCKER_PASSWORD:+NO}${DOCKER_PASSWORD:-YES}"
-        echo "User length: ${#DOCKER_USER}"
-        echo "Password length: ${#DOCKER_PASSWORD}"    
+        echo "Iniciando login"
+        CLEAN_USER=$(echo -n "$DOCKER_USER" | tr -d '[:space:]')
+        CLEAN_PASS=$(echo -n "$DOCKER_PASSWORD" | tr -d '[:space:]')
+        echo -n "$CLEAN_PASS" | docker login -u "$CLEAN_USER" --password-stdin
+        echo "Fin del login"
         
 
     
