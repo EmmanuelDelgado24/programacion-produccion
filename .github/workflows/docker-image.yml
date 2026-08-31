@@ -31,7 +31,7 @@ jobs:
 
     - name: Push Docker Image
       run: |
-        docker push EmmanuelDelgado24/programacion-produccion:v1.0.1 .     
+        docker push EmmanuelDelgado24/programacion-produccion:v1.0.1
       
         
 
