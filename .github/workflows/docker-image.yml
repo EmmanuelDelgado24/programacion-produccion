@@ -27,12 +27,12 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t emmanueldelgado24/programacion-produccion:v1.0.1 \
+        docker build -t emmanueldelgado2412/programacion:v1.0.1 \
           -f Servidor/api/Dockerfile Servidor/api
 
     - name: Push Docker Image
       run: |
-        docker push emmanueldelgado24/programacion-produccion:v1.0.1
+        docker push emmanueldelgado2412/programacion:v1.0.1
       
         
 
