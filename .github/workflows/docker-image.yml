@@ -27,6 +27,7 @@ jobs:
       id: version
      
     - name: Docker login
+      if: github.event_name == 'push'
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -37,10 +38,13 @@ jobs:
           
     - name: Build Docker Image
       run: |
-        docker build -t emmanueldelgado2412/programacion:v1.0.1 .
-        docker build -t emmanueldelgado2412/programacion:latest .
+        docker build -t emmanueldelgado2412/programacion:v1.0.1 \
+          -f Servidor/api/Dockerfile Servidor/api
+        docker build -t emmanueldelgado2412/programacion:latest  \
+          -f Servidor/api/Dockerfile Servidor/api
 
     - name: Push Docker Image
+      if: github.event_name == 'push'
       run: |
         docker push emmanueldelgado2412/programacion:v1.0.1
         docker push emmanueldelgado2412/programacion:latest
