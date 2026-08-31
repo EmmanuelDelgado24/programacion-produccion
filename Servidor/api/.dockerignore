@@ -1,0 +1,12 @@
+bin/
+obj/
+**/bin/
+**/obj/
+.vs/
+.git/
+*.user
+appsettings.Development.json
+Dockerfile
+.dockerignore
+nuget.config
+NuGet.Config
